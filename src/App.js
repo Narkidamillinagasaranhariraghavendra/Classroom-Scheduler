@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const ROOMS = [
   { id: "R101", name: "Room 101", capacity: 60, type: "Lecture Hall", facilities: ["Projector", "AC", "Mic"] },
@@ -35,12 +35,6 @@ const initSchedule = () => {
   return schedule;
 };
 
-const typeColors = {
-  "Lecture Hall": { bg: "#E6F1FB", text: "#0C447C", border: "#85B7EB" },
-  "Seminar Room": { bg: "#E1F5EE", text: "#085041", border: "#5DCAA5" },
-  "Computer Lab": { bg: "#EEEDFE", text: "#3C3489", border: "#AFA9EC" },
-  "Tutorial Room": { bg: "#FAEEDA", text: "#633806", border: "#EF9F27" },
-};
 
 export default function ClassroomScheduler() {
   const [schedule, setSchedule] = useState(initSchedule);
@@ -309,7 +303,6 @@ Be concise and practical. Use bullet points. Max 150 words.`;
             <div className="fade-in" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 16 }}>
               {ROOMS.map(room => {
                 const util = getUtilization(room.id);
-                const colors = typeColors[room.type];
                 const freeNow = !isOccupied(selectedDay, SLOTS[0], room.id);
                 return (
                   <div key={room.id} style={{ background: "#111", border: "1px solid #1a1a1a", borderRadius: 8, padding: 18, cursor: "pointer" }}
